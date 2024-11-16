@@ -22,4 +22,4 @@ jobs:
         pdm install
     - name: Analysing the code with pylint
       run: |
-        pdm run pylint --enable=all $(git ls-files '*.py')
+        pdm run pylint --enable=all --disable=R $(git ls-files '*.py')

@@ -1,0 +1,19 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0  # 选择最新的稳定版本
+    hooks:
+      - id: trailing-whitespace  # 去除多余的空格
+      - id: end-of-file-fixer    # 确保文件以空行结束
+      - id: check-yaml           # 检查 YAML 文件格式
+      - id: check-added-large-files  # 检查提交中是否包含过大的文件
+
+  - repo: https://github.com/PyCQA/pylint
+    rev: v3.3.1
+    hooks:
+      - id: pylint  # Python 代码静态分析
+        args: [--disable=all, --enable=F, --disable=R, --output-format=colorized]
+
+  - repo: https://github.com/psf/black
+    rev: 23.9.1
+    hooks:
+      - id: black  # 自动格式化 Python 代码

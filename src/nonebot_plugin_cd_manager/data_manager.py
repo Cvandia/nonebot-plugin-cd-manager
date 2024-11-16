@@ -57,11 +57,11 @@ plugin_data = DataManager()
 
 @driver.on_bot_connect
 async def startup():
-    '''启动时加载数据'''
+    """启动时加载数据"""
     plugin_data.load_data()
 
 
 @driver.on_bot_disconnect
 async def shutdown():
-    '''关闭时保存数据'''
+    """关闭时保存数据"""
     plugin_data.save_data()
