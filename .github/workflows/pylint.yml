@@ -17,6 +17,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
+        pip install pdm
         pdm add pylint
         pdm install
     - name: Analysing the code with pylint
