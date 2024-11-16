@@ -5,7 +5,6 @@ Description: nonebot-plugin-cd-manager
 import contextlib
 from nonebot import require
 from .config import Config
-from . import matcher
 
 
 require("nonebot_plugin_alconna")
