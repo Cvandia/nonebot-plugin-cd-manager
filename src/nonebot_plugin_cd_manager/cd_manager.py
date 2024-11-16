@@ -15,7 +15,7 @@ def check_if_in_cd(
         group_id (str | int): 群组id
         command (str): 命令
 
-    Return:
+    Returns:
         tuple[bool, float]: 是否在cd中, 剩余时间"""
     # 先检查全局cd
     try:
