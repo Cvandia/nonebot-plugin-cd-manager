@@ -11,7 +11,7 @@ repos:
     rev: v3.3.1
     hooks:
       - id: pylint  # Python 代码静态分析
-        args: [--disable=all, --enable=F, --disable=R, --output-format=colorized]
+        args: [--enable=all, --disable=R, --output-format=colorized]
 
   - repo: https://github.com/psf/black
     rev: 23.9.1
