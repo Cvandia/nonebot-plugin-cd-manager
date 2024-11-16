@@ -1,5 +1,9 @@
+"""
+Description: 用于管理命令的cd
+"""
+
 import time
-from .data_manager import plugin_data, DataManager
+from .data_manager import DataManager
 
 
 def check_if_in_cd(
@@ -10,7 +14,7 @@ def check_if_in_cd(
         plugin_data (DataManager): 插件数据管理器
         group_id (str | int): 群组id
         command (str): 命令
-        
+
     Return:
         tuple[bool, float]: 是否在cd中, 剩余时间"""
     # 先检查全局cd

@@ -1,3 +1,8 @@
+"""
+插件：cd_manager
+Description: 用于管理命令的cd
+"""
+
 from nonebot.adapters import Bot, Event
 from nonebot.message import event_preprocessor
 from nonebot.log import logger
@@ -27,17 +32,15 @@ view_cd = on_alconna(
     ),
 )
 
+
 @view_cd.handle()
-async def _(bot: Bot, event: Event, group_id: Match[str | int]):
-    pass 
+async def _():
+    pass
     # 还没写完
-    # TODO: finish view_cd
 
 
 @set_cd.handle()
 async def _(
-    bot: Bot,
-    event: Event,
     cd: Match[int],
     command: Match[str],
     group_id: Match[str | int],
@@ -62,7 +65,9 @@ async def _(bot: Bot, event: Event):
     event_type = event.get_type()
     if event_type != "message":
         return
-    result, remain_time = check_if_in_cd(plugin_data, event.get_session_id, event.get_plaintext())
+    result, remain_time = check_if_in_cd(
+        plugin_data, event.get_session_id, event.get_plaintext()
+    )
     if result:
         logger.warning("在cd中")
         await bot.send(event, f"cd中, 请等待{remain_time:.2f}秒后再试")

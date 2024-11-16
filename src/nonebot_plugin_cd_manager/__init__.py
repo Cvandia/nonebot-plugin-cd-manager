@@ -1,10 +1,15 @@
+"""
+Description: nonebot-plugin-cd-manager
+"""
+
 import contextlib
 from nonebot import require
+from .config import Config
+from . import matcher
+
 
 require("nonebot_plugin_alconna")
 
-from .config import Config
-from . import matcher
 
 with contextlib.suppress(Exception):
     from nonebot.plugin import PluginMetadata
