@@ -72,5 +72,4 @@ async def _(bot: Bot, event: Event):
         logger.warning("在cd中")
         await bot.send(event, f"cd中, 请等待{remain_time:.2f}秒后再试")
         raise IgnoredException("在cd中")
-    else:
-        return
+    return
