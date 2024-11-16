@@ -32,11 +32,42 @@ view_cd = on_alconna(
     ),
 )
 
+del_cd = on_alconna(
+    Alconna(
+        "删除cd",
+        Args["command", MultiVar(str, "*")],  # 用于删除cd的命令
+        Option(
+            "-g|--group", Args["group_id", int | str, "all"]
+        ),  # 用于删除cd的类型，后面跟群号或者all，all为全局cd，默认为all
+    ),
+)
+
 
 @view_cd.handle()
-async def _():
-    pass
-    # 还没写完
+async def _(group_id: Match[str | int]):
+    group_id = str(group_id.result)
+    if group_id == "all":
+        result = plugin_data.data["all"]
+    else:
+        result = plugin_data.data["group"].get(group_id, {})
+    for key, value in result.items():
+        await view_cd.send(f"{key}的cd为{value[0]}秒")
+
+
+@del_cd.handle()
+async def _(command: Match[str], group_id: Match[str | int]):
+    command_result: list[str] = list(command.result)
+    group_id = str(group_id.result)
+    for cmd in command_result:
+        if group_id == "all":
+            plugin_data.data["all"].pop(cmd, None)
+        else:
+            if group_id not in plugin_data.data["group"]:
+                plugin_data.data["group"][group_id] = {}
+            plugin_data.data["group"][group_id].pop(cmd, None)
+        logger.warning(f"删除{group_id}的{cmd}的cd")
+
+    await del_cd.finish(f"已成功删除{group_id}的{command_result}的cd")
 
 
 @set_cd.handle()
