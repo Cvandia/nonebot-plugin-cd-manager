@@ -6,7 +6,7 @@
 
 _⭐基于Nonebot2的通用cd管理插件⭐_
 
-<a href="https://www.python.org/downloads/release/python-310/"><img src="https://img.shields.io/badge/python-3.10+-blue"></a> <a href=""><img src="https://img.shields.io/badge/QQ-1141538825-yellow"></a> <a href="https://github.com/Cvandia/nonebot-plugin-cd-manager/blob/main/LICENCE"><img src="https://img.shields.io/badge/license-MIT-blue"></a> <a href="https://v2.nonebot.dev/"><img src="https://img.shields.io/badge/Nonebot2-2.2.0+-red"></a>
+<a href="https://www.python.org/downloads/release/python-310/"><img src="https://img.shields.io/badge/python-3.10+-blue"></a> <a href=""><img src="https://img.shields.io/badge/QQ-1141538825-yellow"></a> <a href="https://github.com/Cvandia/nonebot-plugin-cd-manager/blob/main/LICENCE"><img src="https://img.shields.io/badge/license-MIT-blue"></a> <a href="https://v2.nonebot.dev/"><img src="https://img.shields.io/badge/Nonebot2-2.2.0+-red"></a>[![Pylint](https://github.com/Cvandia/nonebot-plugin-cd-manager/actions/workflows/pylint.yml/badge.svg)](https://github.com/Cvandia/nonebot-plugin-cd-manager/actions/workflows/pylint.yml)
 
 **中文简体**
 
