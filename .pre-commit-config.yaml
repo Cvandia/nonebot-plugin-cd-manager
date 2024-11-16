@@ -15,8 +15,3 @@ repos:
         args: [ --fix ]
       # Run the formatter.
       - id: ruff-format
-
-  - repo: https://github.com/psf/black
-    rev: 23.9.1
-    hooks:
-      - id: black  # 自动格式化 Python 代码
