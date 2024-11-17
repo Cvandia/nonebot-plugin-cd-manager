@@ -21,7 +21,13 @@ class DataManager:
         self.data_path = self.data_path / "data.json"
         if not self.data_path.exists():
             with open(self.data_path, "w", encoding="utf-8") as f:
-                f.write("{}")
+                json.dump(
+                    {
+                        "all": {},
+                        "group": {},
+                    },
+                    f,
+                )
         # self.data = {
         #     "all": {
         #         "command": [cd(int), time(float)],
