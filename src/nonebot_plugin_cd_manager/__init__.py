@@ -9,6 +9,8 @@ from .config import Config
 
 require("nonebot_plugin_alconna")
 
+from . import matcher as _matcher  # noqa
+
 
 with contextlib.suppress(Exception):
     from nonebot.plugin import PluginMetadata

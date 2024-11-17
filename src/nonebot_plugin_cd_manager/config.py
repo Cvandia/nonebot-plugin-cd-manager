@@ -11,7 +11,7 @@ class Config(BaseModel):
     插件配置
     """
 
-    data_parent_path: str = "./data/cdrecall"
+    data_parent_path: str = "./data/cd_manager"
 
 
 config = get_plugin_config(Config)
