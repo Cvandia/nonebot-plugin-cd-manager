@@ -11,7 +11,7 @@ from nonebot.log import logger
 from nonebot_plugin_alconna import on_alconna, Alconna, Args, Option, Match, MultiVar
 
 from .data_manager import plugin_data
-from .cd_manager import check_if_in_cd
+from .cd_manager import check_if_in_cd, send_random_cd_message
 
 
 set_cd = on_alconna(
@@ -128,5 +128,5 @@ async def _(bot: Bot, event: Event, matcher: Matcher):
         return
     is_in_cd, remain_time = check_if_in_cd(plugin_data, group_id, event_messgae)
     if is_in_cd:
-        await matcher.send(f"您的cd时间还剩{remain_time:.2f}秒")
+        await send_random_cd_message(matcher, remain_time)
         raise IgnoredException("在cd中")

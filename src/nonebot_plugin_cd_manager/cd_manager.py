@@ -3,6 +3,8 @@ Description: 用于管理命令的cd
 """
 
 import time
+import random
+from nonebot.matcher import Matcher
 from .data_manager import DataManager
 
 
@@ -48,3 +50,21 @@ def check_if_in_cd(
             return False, 0
 
     return False, 0
+
+
+async def send_random_cd_message(matcher: Matcher, remain_time: float):
+    """发送随机cd消息
+    Args:
+        matcher (Matcher): 匹配器
+        remain_time (float): 剩余时间
+    """
+    random_message = random.choice(
+        [
+            "baka!, 恁cd还有{:.2f}秒嘞",
+            "哼哼，臭杂鱼，你的cd还有{:.2f}秒！！",
+            "哼，你的cd还有{:.2f}秒，不许再说话",
+            "呜呜，还有{:.2f}秒，你就不能慢一点吗，主人~",
+            "有笨蛋想要连续触发咱？但是你的cd还有{:.2f}秒哦~",
+        ]
+    )
+    await matcher.send(random_message.format(remain_time))
