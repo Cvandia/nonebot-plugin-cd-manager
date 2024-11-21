@@ -56,7 +56,7 @@ def del_cd_command(command_list: list[str], group_id: str | int) -> None:
         if group_id == "all"
         else plugin_data.data["group"].get(group_id, {})
     )
-    for cmd in data:
+    for cmd in list(data.keys()):
         totle_cmd_list = [cmd] + data[cmd][2]
         if all(c in totle_cmd_list for c in command_list):
             if group_id == "all":

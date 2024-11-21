@@ -1,5 +1,5 @@
 [project]
-name = "nonebot-plugin-cd-managaer"
+name = "nonebot-plugin-cd-manager"
 version = "0.1.1"
 description = "通用cd和撤回管理"
 authors = [
@@ -13,7 +13,8 @@ license = {text = "MIT"}
 [build-system]
 requires = ["pdm-backend"]
 build-backend = "pdm.backend"
-
+[tool.pdm.build]
+includes = ["src/nonebot_plugin_cd_manager"]
 
 [tool.pdm]
 distribution = true
