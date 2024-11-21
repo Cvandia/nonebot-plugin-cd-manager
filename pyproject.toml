@@ -1,6 +1,6 @@
 [project]
 name = "nonebot-plugin-cd-manager"
-version = "0.1.1"
+version = "0.1.2"
 description = "通用cd和撤回管理"
 authors = [
     {name = "Cvandia", email = "106718176+Cvandia@users.noreply.github.com"},
