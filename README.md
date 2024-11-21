@@ -94,8 +94,10 @@ nonebot-plugin-cd-manager
 
 ## 🌙 TODO
  - [x] 添加设置cd 指令
- - [ ] 添加查看cd 指令
- - [ ] 添加删除cd 指令
+ - [x] 添加查看cd 指令
+ - [x] 添加删除cd 指令
+ - [x] 添加`full,in,statrt`匹配机制
+ - [ ] 支持配置单条指令的匹配机制
 
 <center>喜欢记得点个star⭐</center>
 
