@@ -5,48 +5,55 @@ Description: 用于管理命令的cd
 import time
 import random
 from nonebot.matcher import Matcher
-from .data_manager import DataManager
+from nonebot.log import logger  # noqa
+from .data_manager import plugin_data
 from .config import config
 
 
 match_rule = config.match_rule
 
 
-def check_if_in_cd(
-    plugin_data: DataManager, group_id: str | int, event_message: str
-) -> tuple[bool, float]:
+def check_if_in_cd(group_id: str | int, event_message: str) -> tuple[bool, float]:
     """检查是否在cd中
     Args:
-        plugin_data (DataManager): 插件数据管理器
         group_id (str | int): 群组id
-        command (str): 命令
+        event_message (str): 事件消息
 
     Return:
         tuple[bool, float]: 是否在cd中, 剩余时间"""
 
-    def check_cd(data_command):
-        for command, (cd, last_time) in data_command.items():
-            if (
-                (match_rule == "in" and command in event_message)
-                or (match_rule == "full" and command == event_message)
-                or (match_rule == "start" and event_message.startswith(command))
-            ):
-                if time.time() - last_time < cd:
-                    return True, cd - (time.time() - last_time)
-                else:
-                    data_command[command][1] = time.time()
-                    return False, 0
-        return False, 0
+    def _match_rule(cmd: str, message: str) -> bool:
+        """匹配规则
+        Args:
+            cmd (str): 命令
+        Return:
+            bool: 是否匹配"""
+        if match_rule == "all":
+            return cmd == message
+        elif match_rule == "start":
+            return message.startswith(cmd)
+        elif match_rule == "in":
+            return cmd in message
 
-    # 先检查全局cd
-    global_cd = plugin_data.data.get("all", {})
-    in_cd, remain_time = check_cd(global_cd)
-    if in_cd:
-        return in_cd, remain_time
+    data = (
+        plugin_data.data["group"].get(group_id, {})
+        if group_id != "all"
+        else plugin_data.data["all"]
+    )
+    if not data:
+        data = plugin_data.data["all"]
 
-    # 再检查群组cd
-    group_cd = plugin_data.data.get("group", {}).get(group_id, {})
-    return check_cd(group_cd)
+    for cmd in data:
+        totle_cmd_list = [cmd] + data[cmd][2]
+        for _cmd in totle_cmd_list:
+            match_rule_rusult = _match_rule(_cmd, event_message)
+            if match_rule_rusult:
+                remain_time = data[cmd][0] - (time.time() - data[cmd][1])
+                if remain_time > 0:
+                    return True, remain_time
+                data[cmd][1] = time.time()
+                return False, 0
+    return False, 0
 
 
 async def send_random_cd_message(matcher: Matcher, remain_time: float):
