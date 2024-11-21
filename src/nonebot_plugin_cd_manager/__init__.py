@@ -13,7 +13,7 @@ from . import matcher as _matcher  # noqa
 
 
 with contextlib.suppress(Exception):
-    from nonebot.plugin import PluginMetadata
+    from nonebot.plugin import PluginMetadata, inherit_supported_adapters
 
     __plugin_meta__ = PluginMetadata(
         name="nonebot-plugin-cd-manager",
@@ -22,5 +22,5 @@ with contextlib.suppress(Exception):
         homepage="https://github.com/Cvandia/nonebot-plugin-cd-manager",
         config=Config,
         type="application",
-        supported_adapters=None,
+        supported_adapters=inherit_supported_adapters("nonebot_plugin_alconna"),
     )
