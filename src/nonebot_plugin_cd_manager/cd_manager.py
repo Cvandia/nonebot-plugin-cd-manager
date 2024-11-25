@@ -46,8 +46,8 @@ def check_if_in_cd(group_id: str | int, event_message: str) -> tuple[bool, float
     for cmd in data:
         totle_cmd_list = [cmd] + data[cmd][2]
         for _cmd in totle_cmd_list:
-            match_rule_rusult = _match_rule(_cmd, event_message)
-            if match_rule_rusult:
+            match_rule_result = _match_rule(_cmd, event_message)
+            if match_rule_result:
                 remain_time = data[cmd][0] - (time.time() - data[cmd][1])
                 if remain_time > 0:
                     return True, remain_time
