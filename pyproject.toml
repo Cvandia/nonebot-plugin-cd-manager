@@ -5,7 +5,7 @@ description = "通用cd和撤回管理"
 authors = [
     {name = "Cvandia", email = "106718176+Cvandia@users.noreply.github.com"},
 ]
-dependencies = ["nonebot2>=2.2.0", "nonebot-plugin-alconna>=0.53.1"]
+dependencies = ["nonebot2>=2.2.0", "nonebot-plugin-alconna>=0.53.1", "nonebot-plugin-waiter>=0.8.1"]
 requires-python = ">=3.10"
 readme = "README.md"
 license = {text = "MIT"}

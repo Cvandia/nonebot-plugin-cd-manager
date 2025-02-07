@@ -7,7 +7,15 @@ from nonebot.adapters import Bot, Event
 from nonebot.matcher import Matcher
 from nonebot.message import run_preprocessor
 from nonebot.exception import IgnoredException
-from nonebot_plugin_alconna import on_alconna, Alconna, Args, Option, Match, MultiVar
+from nonebot_plugin_alconna import (
+    on_alconna,
+    Alconna,
+    Args,
+    Option,
+    Match,
+    MultiVar,
+    Query,
+)
 
 from .cd_manager import check_if_in_cd, send_random_cd_message
 from .matcher_utils import view_cd_list, del_cd_command, add_cd_command
@@ -16,11 +24,12 @@ from .matcher_utils import view_cd_list, del_cd_command, add_cd_command
 set_cd = on_alconna(
     Alconna(
         ["设置cd", "添加cd"],
-        Args["cd", int]["command", MultiVar(str, "*")],  # 用于设置cd的时间和响应命令
+        Args["cd?", int]["command?", MultiVar(str, "+")],  # 用于设置cd的时间和响应命令
         Option(
             "-g|--group", Args["group_id", int | str, "all"]
         ),  # 用于设置cd的类型，后面跟群号或者all，all为全局cd，默认为all
     ),
+    use_cmd_start=True,
 )
 
 view_cd = on_alconna(
@@ -30,16 +39,18 @@ view_cd = on_alconna(
             "-g|--group", Args["group_id", int | str, ""]
         ),  # 用于查看cd的类型，后面跟群号或者all，all为全局cd，默认为all
     ),
+    use_cmd_start=True,
 )
 
 del_cd = on_alconna(
     Alconna(
         ["删除cd", "移除cd"],
-        Args["command", MultiVar(str, "*")],  # 用于删除cd的命令
+        Args["command?", MultiVar(str, "+")],  # 用于删除cd的命令
         Option(
             "-g|--group", Args["group_id", int | str, "all"]
         ),  # 用于删除cd的类型，后面跟群号或者all，all为全局cd，默认为all
     ),
+    use_cmd_start=True,
 )
 
 
@@ -50,7 +61,9 @@ async def _(group_id: Match[str | int]):
 
 
 @del_cd.handle()
-async def _(command: Match[str], group_id: Match[str | int]):
+async def _(
+    command: Match[tuple[str, ...]], group_id: Query[str | int] = Query("group", "all")
+):
     command: list[str] = list(command.result)
     group_id = str(group_id.result) if group_id.result != "all" else "all"
     try:
@@ -63,8 +76,8 @@ async def _(command: Match[str], group_id: Match[str | int]):
 @set_cd.handle()
 async def _(
     cd: Match[int],
-    command: Match[str],
-    group_id: Match[str | int],
+    command: Match[tuple[str, ...]],
+    group_id: Query[str | int] = Query("group", "all"),
 ):
     command: list[str] = list(command.result)
     group_id = str(group_id.result) if group_id.result != "all" else "all"

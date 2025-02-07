@@ -8,6 +8,7 @@ from .config import Config
 
 
 require("nonebot_plugin_alconna")
+require("nonebot_plugin_waiter")
 
 from . import matcher as _matcher  # noqa
 
