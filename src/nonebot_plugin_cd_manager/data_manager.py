@@ -4,10 +4,11 @@
 
 import json
 from pathlib import Path
+
 from nonebot import get_driver
 from nonebot.log import logger
-from .config import config
 
+from .config import config
 
 driver = get_driver()
 
