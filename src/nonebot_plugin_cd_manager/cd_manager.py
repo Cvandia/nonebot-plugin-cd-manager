@@ -2,13 +2,14 @@
 Description: 用于管理命令的cd
 """
 
-import time
 import random
-from nonebot.matcher import Matcher
-from nonebot.log import logger  # noqa
-from .data_manager import plugin_data
-from .config import config
+import time
 
+from nonebot.log import logger  # noqa
+from nonebot.matcher import Matcher
+
+from .config import config
+from .data_manager import plugin_data
 
 match_rule = config.match_rule
 
