@@ -3,8 +3,9 @@ Description: 配置文件
 """
 
 from typing import Literal
-from pydantic import BaseModel
+
 from nonebot.plugin import get_plugin_config
+from pydantic import BaseModel
 
 
 class Config(BaseModel):
