@@ -3,9 +3,10 @@ Description: nonebot-plugin-cd-manager
 """
 
 import contextlib
-from nonebot import require
-from .config import Config
 
+from nonebot import require
+
+from .config import Config
 
 require("nonebot_plugin_alconna")
 require("nonebot_plugin_waiter")
