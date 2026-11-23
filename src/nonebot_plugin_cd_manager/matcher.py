@@ -4,22 +4,21 @@ Description: 用于管理命令的cd
 """
 
 from nonebot.adapters import Bot, Event
+from nonebot.exception import IgnoredException
 from nonebot.matcher import Matcher
 from nonebot.message import run_preprocessor
-from nonebot.exception import IgnoredException
 from nonebot_plugin_alconna import (
-    on_alconna,
     Alconna,
     Args,
-    Option,
     Match,
     MultiVar,
+    Option,
     Query,
+    on_alconna,
 )
 
 from .cd_manager import check_if_in_cd, send_random_cd_message
-from .matcher_utils import view_cd_list, del_cd_command, add_cd_command
-
+from .matcher_utils import add_cd_command, del_cd_command, view_cd_list
 
 set_cd = on_alconna(
     Alconna(

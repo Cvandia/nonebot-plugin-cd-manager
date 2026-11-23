@@ -2,8 +2,9 @@
 Description: 用于mathcer.py的工具函数
 """
 
-from .data_manager import plugin_data
 from nonebot.log import logger
+
+from .data_manager import plugin_data
 
 
 def view_cd_list(group_id: str | int) -> str:
